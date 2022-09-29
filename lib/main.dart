@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-//import 'package:flutter_components/screens/list_view_1.dart';
-import 'package:flutter_components/screens/list_view_2.dart';
+import 'package:flutter_components/screens/screens.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,10 +9,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
 
-        //home: ListView1Screen());
-        home: ListView2Screen());
+      //home: ListView1Screen());
+      initialRoute: 'homeScreen',
+      routes: {
+        'homeScreen': (BuildContext context) => const HomeScreen(),
+        'listView1Screen': (BuildContext context) => const ListView1Screen(),
+        'listView2Screen': (BuildContext context) => const ListView2Screen(),
+        'cardScreen': (BuildContext context) => const CardScreen(),
+        'alertScreen': (BuildContext context) => const AlertScreen(),
+      },
+
+// Funcion sirve para rutas dinamicas, no usar en otros casos
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => const AlertScreen(),
+      ),
+    );
   }
 }
